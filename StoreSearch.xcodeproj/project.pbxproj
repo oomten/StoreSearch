@@ -45,6 +45,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2CA0829E292553F40045EFC0 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				2CE86C212923A00E00FF6C82 /* SearchResult.swift */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		2CA0829F2925540A0045EFC0 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				2CDF23A4291692D800000833 /* AppDelegate.swift */,
+				2CDF23A6291692D800000833 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		2CA082A0292554240045EFC0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2CDF23A8291692D800000833 /* SearchViewController.swift */,
+				2C5CAFD72923DA15007579B8 /* NothingFoundCell.xib */,
+				2C5CAFD52923D60B007579B8 /* SearchResultCell.swift */,
+				2CE86C232923BFE300FF6C82 /* SearchResultCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		2CDF2398291692D800000833 = {
 			isa = PBXGroup;
 			children = (
@@ -64,13 +92,9 @@
 		2CDF23A3291692D800000833 /* StoreSearch */ = {
 			isa = PBXGroup;
 			children = (
-				2CDF23A4291692D800000833 /* AppDelegate.swift */,
-				2CDF23A6291692D800000833 /* SceneDelegate.swift */,
-				2CDF23A8291692D800000833 /* SearchViewController.swift */,
-				2C5CAFD72923DA15007579B8 /* NothingFoundCell.xib */,
-				2C5CAFD52923D60B007579B8 /* SearchResultCell.swift */,
-				2CE86C232923BFE300FF6C82 /* SearchResultCell.xib */,
-				2CE86C212923A00E00FF6C82 /* SearchResult.swift */,
+				2CA0829F2925540A0045EFC0 /* Delegates */,
+				2CA082A0292554240045EFC0 /* View */,
+				2CA0829E292553F40045EFC0 /* Data Model */,
 				2CDF23AA291692D800000833 /* Main.storyboard */,
 				2CDF23AD291692DA00000833 /* Assets.xcassets */,
 				2CDF23AF291692DA00000833 /* LaunchScreen.storyboard */,
