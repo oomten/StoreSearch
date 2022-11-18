@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2E58542927EC1700468B20 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C2E58532927EC1700468B20 /* LoadingCell.xib */; };
 		2C5CAFD62923D60B007579B8 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CAFD52923D60B007579B8 /* SearchResultCell.swift */; };
 		2C5CAFD82923DA15007579B8 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C5CAFD72923DA15007579B8 /* NothingFoundCell.xib */; };
 		2CDF23A5291692D800000833 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF23A4291692D800000833 /* AppDelegate.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C2E58532927EC1700468B20 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		2C5CAFD52923D60B007579B8 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		2C5CAFD72923DA15007579B8 /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		2CDF23A1291692D800000833 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				2CDF23A8291692D800000833 /* SearchViewController.swift */,
+				2C2E58532927EC1700468B20 /* LoadingCell.xib */,
 				2C5CAFD72923DA15007579B8 /* NothingFoundCell.xib */,
 				2C5CAFD52923D60B007579B8 /* SearchResultCell.swift */,
 				2CE86C232923BFE300FF6C82 /* SearchResultCell.xib */,
@@ -163,6 +166,7 @@
 			files = (
 				2CDF23B1291692DA00000833 /* LaunchScreen.storyboard in Resources */,
 				2CDF23AE291692DA00000833 /* Assets.xcassets in Resources */,
+				2C2E58542927EC1700468B20 /* LoadingCell.xib in Resources */,
 				2CE86C242923BFE300FF6C82 /* SearchResultCell.xib in Resources */,
 				2C5CAFD82923DA15007579B8 /* NothingFoundCell.xib in Resources */,
 				2CDF23AC291692D800000833 /* Main.storyboard in Resources */,
