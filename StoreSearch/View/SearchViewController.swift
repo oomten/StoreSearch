@@ -49,7 +49,7 @@ class SearchViewController: UIViewController {
     func iTunesURL(searchText: String) -> URL {
         let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)! // делает пробел в поиске
         
-        let urlString = String(format: "https://itunes.apple.com/search?term=%@", encodedText)
+        let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200", encodedText)
         let url = URL(string: urlString)
         return url!
     }
@@ -103,30 +103,33 @@ extension SearchViewController: UISearchBarDelegate {
             hasSearched = true
             searchResults = []
             
-            let queue = DispatchQueue.global()
-            let url = self.iTunesURL(searchText: searchBar.text!)
-            
-            queue.async {
-                if let data = self.performStoreRequest(with: url) {
-                    self.searchResults = self.parse(data: data)
-                    self.searchResults.sort(by: <)
+            let url = iTunesURL(searchText: searchBar.text!)
+            let session = URLSession.shared
+            let dataTask = session.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    print("\n*** Failure! \(error.localizedDescription)")
+                } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                    if let data = data {
+                        self.searchResults = self.parse(data: data)
+                        self.searchResults.sort(by: <)
+                        DispatchQueue.main.async {
+                            self.isLoading = false
+                            self.tableView.reloadData()
+                        }
+                        return
+                    }
                     DispatchQueue.main.async {
+                        self.hasSearched = false
                         self.isLoading = false
                         self.tableView.reloadData()
+                        self.showNetworkError()
                     }
-                    return
+                } else {
+                    print("\n*** Failure! \(response!)")
                 }
                 
-                //            let url = iTunesURL(searchText: searchBar.text!)
-                //            print("URL: '\(url)'")
-                //
-                //            if let data = performStoreRequest(with: url) {
-                //                searchResults = parse(data: data)
-                //                // сортировка результата
-                //                searchResults.sort(by: <)
             }
-            //            isLoading = false
-            //            tableView.reloadData()
+            dataTask.resume()
         }
     }
     
