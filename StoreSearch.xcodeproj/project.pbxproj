@@ -10,6 +10,7 @@
 		2C2E58542927EC1700468B20 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C2E58532927EC1700468B20 /* LoadingCell.xib */; };
 		2C5CAFD62923D60B007579B8 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CAFD52923D60B007579B8 /* SearchResultCell.swift */; };
 		2C5CAFD82923DA15007579B8 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C5CAFD72923DA15007579B8 /* NothingFoundCell.xib */; };
+		2CA383CF292FD70B008D882A /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA383CE292FD70B008D882A /* UIImageView+DownloadImage.swift */; };
 		2CDF23A5291692D800000833 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF23A4291692D800000833 /* AppDelegate.swift */; };
 		2CDF23A7291692D800000833 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF23A6291692D800000833 /* SceneDelegate.swift */; };
 		2CDF23A9291692D800000833 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF23A8291692D800000833 /* SearchViewController.swift */; };
@@ -23,6 +24,7 @@
 		2C2E58532927EC1700468B20 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		2C5CAFD52923D60B007579B8 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		2C5CAFD72923DA15007579B8 /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
+		2CA383CE292FD70B008D882A /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 		2CDF23A1291692D800000833 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CDF23A4291692D800000833 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CDF23A6291692D800000833 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 			children = (
 				2CDF23A8291692D800000833 /* SearchViewController.swift */,
 				2C2E58532927EC1700468B20 /* LoadingCell.xib */,
+				2CA383CE292FD70B008D882A /* UIImageView+DownloadImage.swift */,
 				2C5CAFD72923DA15007579B8 /* NothingFoundCell.xib */,
 				2C5CAFD52923D60B007579B8 /* SearchResultCell.swift */,
 				2CE86C232923BFE300FF6C82 /* SearchResultCell.xib */,
@@ -178,6 +181,7 @@
 			files = (
 				2CDF23A9291692D800000833 /* SearchViewController.swift in Sources */,
 				2CDF23A5291692D800000833 /* AppDelegate.swift in Sources */,
+				2CA383CF292FD70B008D882A /* UIImageView+DownloadImage.swift in Sources */,
 				2CE86C222923A00E00FF6C82 /* SearchResult.swift in Sources */,
 				2CDF23A7291692D800000833 /* SceneDelegate.swift in Sources */,
 				2C5CAFD62923D60B007579B8 /* SearchResultCell.swift in Sources */,
