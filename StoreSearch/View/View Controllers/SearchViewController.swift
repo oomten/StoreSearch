@@ -40,12 +40,20 @@ class SearchViewController: UIViewController {
         
         var cellNib = UINib(nibName: TableView.CellIdentifiers.searchResultCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.searchResultCell)
+        
         cellNib = UINib(nibName: TableView.CellIdentifiers.nothingFoundCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.nothingFoundCell)
+        
         // ячейка с загрузочным изображением
         cellNib = UINib(nibName: TableView.CellIdentifiers.loadingCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.loadingCell)
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "ShowDetail" {
+//            segue.destination.modalPresentationStyle = .overFullScreen
+//        }
+//    }
     
     //MARK: - Actions
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
@@ -67,16 +75,6 @@ class SearchViewController: UIViewController {
         let urlString = "https://itunes.apple.com/search?" +  "term=\(encodedText)&limit=200&entity=\(kind)"
         let url = URL(string: urlString)
         return url!
-    }
-    
-    func performStoreRequest(with url: URL) -> Data? {
-        do {
-            return try Data(contentsOf: url)
-        } catch {
-            print("Download Error: \(error.localizedDescription)")
-            showNetworkError()
-            return nil
-        }
     }
     
     func parse(data: Data) -> [SearchResult] {
@@ -103,12 +101,23 @@ class SearchViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowDetail" {
+            let detailViewController = segue.destination as! DetailViewController
+            let indexPath = sender as! IndexPath
+            let searchResult = searchResults[indexPath.row]
+            detailViewController.searchResult = searchResult
+        }
+    }
+    
+    
 }
 
 //MARK: - Search Bar Delegate
 extension SearchViewController: UISearchBarDelegate {
     
-    func searchBarButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         performSearch()
     }
     
@@ -139,16 +148,15 @@ extension SearchViewController: UISearchBarDelegate {
                         }
                         return
                     }
-                    DispatchQueue.main.async {
-                        self.hasSearched = false
-                        self.isLoading = false
-                        self.tableView.reloadData()
-                        self.showNetworkError()
-                    }
                 } else {
                     print("\n*** Failure! \(response!)")
                 }
-                
+                DispatchQueue.main.async {
+                    self.hasSearched = false
+                    self.isLoading = false
+                    self.tableView.reloadData()
+                    self.showNetworkError()
+                }
             }
             dataTask?.resume()
         }
@@ -189,21 +197,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: TableView.CellIdentifiers.searchResultCell, for: indexPath) as! SearchResultCell
             let searchResult = searchResults[indexPath.row]
             cell.configure(for: searchResult)
-//            cell.nameLabel.text = searchResult.name
-//            if searchResult.artist.isEmpty {
-//                cell.artistNameLabel.text = "Unknown"
-//            } else {
-//                cell.artistNameLabel.text = String(
-//                    format: "%@ (%@)",
-//                    searchResult.artist,
-//                    searchResult.type)
-//            }
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "ShowDetail", sender: indexPath)
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -213,7 +213,5 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             return indexPath
         }
     }
-    
-    
 }
 
