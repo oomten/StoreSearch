@@ -13,6 +13,7 @@ class LandscapeViewController: UIViewController {
     var landscapeVC: LandscapeViewController?
     var searchResults = [SearchResult]()
     private var firstTime = true
+    private var downloads = [URLSessionDownloadTask]()
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -60,6 +61,33 @@ class LandscapeViewController: UIViewController {
     }
     
     // MARK: - Private Methods
+    private func downloadImage(for searchResult: SearchResult, andPlaceOn button: UIButton) {
+        if let url = URL(string: searchResult.imageSmall) {
+            let task = URLSession.shared.downloadTask(with: url) {
+                [weak button] url, _, error in
+                if error == nil, let url = url,
+                   let data = try? Data(contentsOf: url),
+                   let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        if let button = button {
+                            button.setImage(image, for: .normal)
+                        }
+                    }
+                }
+            }
+            task.resume()
+            downloads.append(task)
+            
+        }
+    }
+    // MARK: - Deinit Downloads
+    deinit {
+        print("deinit \(self)")
+        for task in downloads {
+            task.cancel()
+        }
+    }
+    
     private func tileButtons(_ searchResults: [SearchResult]) {
         let itemWidth: CGFloat = 94
         let itemHeight: CGFloat = 88
@@ -86,11 +114,11 @@ class LandscapeViewController: UIViewController {
         var row = 0
         var column = 0
         var x = marginX
-        for (index, result) in searchResults.enumerated() {
+        for (_, result) in searchResults.enumerated() {
             // 1
-            let button = UIButton(type: .system)
-            button.backgroundColor = UIColor.white
-            button.setTitle("\(index)", for: .normal)
+            let button = UIButton(type: .custom)
+            downloadImage(for: result, andPlaceOn: button)
+            button.setBackgroundImage(UIImage(named: "LandscapeButton"), for: .normal)
             // 2
             button.frame = CGRect(
                 x: x + paddingHorz,
