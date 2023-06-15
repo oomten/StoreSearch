@@ -13,6 +13,7 @@
 		2C489F2D2A14DAAB00F5B5A5 /* FadeOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C489F2C2A14DAAB00F5B5A5 /* FadeOutAnimationController.swift */; };
 		2C5CAFD62923D60B007579B8 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CAFD52923D60B007579B8 /* SearchResultCell.swift */; };
 		2C5CAFD82923DA15007579B8 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C5CAFD72923DA15007579B8 /* NothingFoundCell.xib */; };
+		2C72D10D2A3A41F600EF45B1 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C72D10C2A3A41F600EF45B1 /* Search.swift */; };
 		2C8A4F6A29479F2700D055FB /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A4F6929479F2700D055FB /* BounceAnimationController.swift */; };
 		2C8A4F6F2947AB3E00D055FB /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A4F6E2947AB3E00D055FB /* SlideOutAnimationController.swift */; };
 		2CA383CF292FD70B008D882A /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA383CE292FD70B008D882A /* UIImageView+DownloadImage.swift */; };
@@ -33,6 +34,7 @@
 		2C489F2C2A14DAAB00F5B5A5 /* FadeOutAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeOutAnimationController.swift; sourceTree = "<group>"; };
 		2C5CAFD52923D60B007579B8 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		2C5CAFD72923DA15007579B8 /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
+		2C72D10C2A3A41F600EF45B1 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		2C8A4F6929479F2700D055FB /* BounceAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
 		2C8A4F6E2947AB3E00D055FB /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOutAnimationController.swift; sourceTree = "<group>"; };
 		2CA383CE292FD70B008D882A /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				2CE86C212923A00E00FF6C82 /* SearchResult.swift */,
+				2C72D10C2A3A41F600EF45B1 /* Search.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C72D10D2A3A41F600EF45B1 /* Search.swift in Sources */,
 				2CDF23A9291692D800000833 /* SearchViewController.swift in Sources */,
 				2CDF23A5291692D800000833 /* AppDelegate.swift in Sources */,
 				2C489F2D2A14DAAB00F5B5A5 /* FadeOutAnimationController.swift in Sources */,
