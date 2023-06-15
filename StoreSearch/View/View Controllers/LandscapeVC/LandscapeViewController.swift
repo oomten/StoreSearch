@@ -18,7 +18,7 @@ class LandscapeViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    
+    // MARK: - Views
     override func viewDidLoad() {
         super.viewDidLoad()
         view.removeConstraints(view.constraints)
@@ -44,7 +44,12 @@ class LandscapeViewController: UIViewController {
             height: pageControl.frame.size.height)
         if firstTime {
             firstTime = false
-            tileButtons(search.searchResults)
+            switch search.state {
+            case .notSearchedYet, .loading, .noResults:
+                break
+            case .results(let list):
+                tileButtons(list)
+            }
         }
     }
     
@@ -78,13 +83,6 @@ class LandscapeViewController: UIViewController {
             task.resume()
             downloads.append(task)
             
-        }
-    }
-    // MARK: - Deinit Downloads
-    deinit {
-        print("deinit \(self)")
-        for task in downloads {
-            task.cancel()
         }
     }
     
@@ -150,8 +148,17 @@ class LandscapeViewController: UIViewController {
         
     }
     
+    // MARK: - Deinit Downloads
+    deinit {
+        print("deinit \(self)")
+        for task in downloads {
+            task.cancel()
+        }
+    }
+    
 }
 
+// MARK: - Extensions
 extension LandscapeViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let width = scrollView.bounds.size.width
