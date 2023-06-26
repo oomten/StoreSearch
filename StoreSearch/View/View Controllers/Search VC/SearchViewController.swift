@@ -112,6 +112,10 @@ class SearchViewController: UIViewController {
                 self.landscapeVC = nil
             }
             
+            if self.presentedViewController != nil {
+                self.dismiss(animated: true)
+            }
+            
         }
     }
     
@@ -144,6 +148,7 @@ class SearchViewController: UIViewController {
                             self.showNetworkError()
                         }
                         self.tableView.reloadData()
+                        self.landscapeVC?.searchResultReceived()
                     }
             }
             tableView.reloadData()
