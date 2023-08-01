@@ -10,7 +10,14 @@ import UIKit
 class DetailViewController: UIViewController {
     
     // MARK: - Constants and Variables
-    var searchResult: SearchResult!
+    var isPopup = false
+    var searchResult: SearchResult! {
+        didSet {
+            if isViewLoaded {
+                updateUI()
+            }
+        }
+    }
     var downloadTask: URLSessionDownloadTask?
     
     
@@ -28,25 +35,26 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        popupView.layer.cornerRadius = 10
-        
-        let gestureRecognizer = UITapGestureRecognizer(
-            target: self, action: #selector(close))
-        gestureRecognizer.cancelsTouchesInView = false
-        gestureRecognizer.delegate = self
-        view.addGestureRecognizer(gestureRecognizer)
-        
+        if isPopup {
+            popupView.layer.cornerRadius = 10
+            
+            let gestureRecognizer = UITapGestureRecognizer(
+                target: self, action: #selector(close))
+            gestureRecognizer.cancelsTouchesInView = false
+            gestureRecognizer.delegate = self
+            view.addGestureRecognizer(gestureRecognizer)
+            // Gradient background view
+            view.backgroundColor = UIColor.clear
+            let dimmingView = GradientView(frame: CGRect.zero)
+            dimmingView.frame = view.bounds
+            view.insertSubview(dimmingView, at: 0)
+        } else {
+            view.backgroundColor = UIColor(patternImage:  UIImage(named: "LandscapeBackground")!)
+            popupView.isHidden = true
+        }
         if searchResult != nil {
             updateUI()
         }
-        
-        // Gradient background view
-        view.backgroundColor = UIColor.clear
-        let dimmingView = GradientView(frame: CGRect.zero)
-        dimmingView.frame = view.bounds
-        view.insertSubview(dimmingView, at: 0)
-        
-        
     }
     
     //MARK: - Actions
@@ -63,10 +71,12 @@ class DetailViewController: UIViewController {
     
     // MARK: - Helper Methods
     func updateUI() {
+        popupView.isHidden = false
+        
         nameLabel.text = searchResult.name
         
         if searchResult.artist.isEmpty {
-            artistNameLabel.text = "Unknown"
+            artistNameLabel.text = NSLocalizedString("Unknown", comment: "Localised Kind: Unknown")
         } else {
             artistNameLabel.text = searchResult.artist
         }
@@ -81,7 +91,7 @@ class DetailViewController: UIViewController {
         
         let priceText: String
         if searchResult.price == 0 {
-            priceText = "Free"
+            priceText = NSLocalizedString("Free", comment: "Lokalized kind: Free")
         } else if let text = formatter.string(from: searchResult.price as NSNumber) {
             priceText = text
         } else {

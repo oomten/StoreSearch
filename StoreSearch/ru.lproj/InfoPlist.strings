@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  StoreSearch
+
+  Created by Denis Nurislamov on 08.07.2023.
+  
+*/
+
+CFBundleDisplayName = "iStoreПоиск";
