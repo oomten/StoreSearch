@@ -20,6 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         searchVC.splitViewDetail = detailVC
         
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        splitVC.delegate = self
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -64,7 +66,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let nav = splitVC.viewControllers.last as! UINavigationController
         return nav.viewControllers.first as! DetailViewController
     }
-
-
 }
 
+extension SceneDelegate: UISplitViewControllerDelegate {
+    func splitViewController(_ svc: UISplitViewController, topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column) -> UISplitViewController.Column {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return .primary
+        }
+        return proposedTopColumn
+    }
+}
